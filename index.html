@@ -19,7 +19,7 @@
 
         <!-- LOGO -->
         <h1 class="header_global_logo">
-          貸し切りプライベートジム
+          <a class="header_global_logo__anchor" href="./">貸し切りプライベートジム</a>
         </h1>
 
         <div class="header_upper_right_wrap">
@@ -35,11 +35,10 @@
           </div>
 
           <!-- ハンバーガーアイコン -->
-          <div class="hamburger_icon__wrap">
-            <div class="hamburger_icon">
-              <span></span>
-            </div>
-            menu
+          <div class="hamburger_icon">
+            <span class="hamburger_icon__upper_buns"></span>
+            <span class="hambruger_icon__string">menu</span>
+            <span class="hamburger_icon__upper_buns"></span>
           </div>
         </div>
 
@@ -61,7 +60,9 @@
     </div>
   </header>
 
-  <section class="hambruger_menue_container">
+  <!-- ハンバーガーアイコンで表示されるメニューコンテナ -->
+  <section class="hambruger_menue_container hambruger_menue_container--invisible">
+    <!-- ハンバーガーメニュ― -->
     <nav class="hambruger_menue">
       <ul class="hambruger_menue__list">
         <li class="hambruger_menue__item"><a class="" href=""></a></li>
@@ -105,9 +106,9 @@
 
       </div>
       <!-- メインビジュアル上に常に表示されるボタン, absolute でinner wrap 上の中央に乗る -->
-      <div class="main_visual_button">
+      <a class="main_visual_button" href="#">
         LINEで簡単予約
-      </div>
+      </a>
     </div>
   </div>
 

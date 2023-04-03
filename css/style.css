@@ -19,10 +19,10 @@ footer,
   /* ヘッダーとキービジュアル部の共通width */
   --common-width-of-header-and-key-visual: 95%;
   /* ヘッダー部分の高さ */
+  --header-upper-padding-top: 8px;
   --header-upper-height: 50px;
+  --header-gap: 8px;
   --header-bottom-height: 50px;
-  /* キービジュアル部分の共通height */
-  --common-height-key-visual: 80vh;
 }
 
 /* ************************************************************************
@@ -30,6 +30,7 @@ footer,
 */
 /* header tag */
 .header_outer_container {
+  padding-top: var(--header-upper-padding-top);
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -37,9 +38,18 @@ footer,
   background-color: white;
   color: #333;
   /* Size */
-  height: calc( var(--header-upper-height) + var(--header-bottom-height) );
+  height: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-bottom-height) );
   width: 100%;
+  /* 状態変化時間 */
+  transition-duration: 0.25s;
+  transition-property: background-color, color, opacity;
 }
+.header_outer_container--open {
+  background-color: black;
+  color: white;
+  opacity: 0.9;
+}
+
 /* ヘッダー内部ラップ */
 .header_inner_wrap {
   width: var(--common-width-of-header-and-key-visual);
@@ -48,10 +58,17 @@ footer,
   margin-left: auto;
 }
 
+/* ヘッダー h1 */
 .header_global_logo {
   font-size: 1.4rem;
   height: 100%;
 }
+/* ヘッダー h1 > a */
+.header_global_logo__anchor {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 /* ヘッダー > ロゴ&ボタン・ラップ */
 .header_upper_wrap {
@@ -62,10 +79,13 @@ footer,
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 /* ヘッダー > ロゴ&ボタン・ラップ > ロゴ */
 .header_global_logo {
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* ヘッダーの右上のラッパ */
 .header_upper_right_wrap {
@@ -80,12 +100,13 @@ footer,
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  height: var(--header-upper-height);
 }
-/* ヘッダー > ロゴ&ボタン > ボタン群ラップ > ボタン共通(a) */
+/* ヘッダー > ロゴ&ボタン > ボタン群ラップ > ボタン共通(<a>) */
 .header_anchor_button {
   background-color: gray;
   width: 200px;
-  height: var(--header-bottom-height);
+  height: 48px;
   /* ブロック化。および、内部テキストを中央寄せ */
   display: flex;
   justify-content: center;
@@ -97,29 +118,26 @@ footer,
   margin-right: 24px;
 }
 .header_anchor_button {
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 
 /** ************************************************************************
   ハンバーガーアイコン
 */
-/* ハンバーガーアイコンのラップ */
-.hamburger_icon__wrap {
-  width: 48px;
-  height: 60px;
-  font-size: 10px;
-  text-align: center;
-}
 /* ハンバーガーアイコン自体 */
 .hamburger_icon {
-  width: 48px;
   height: 48px;
+  width: 48px;
+  font-size: 10px;
+  text-align: center;
   border: 1px solid gray;
+  /* マウスオーバーでカーソルを変更 */
+  cursor : pointer;
 }
 .hamburger_icon {
   border-radius: 12px;
@@ -128,12 +146,15 @@ footer,
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
 }
+.hambruger_icon__string {
+
+}
 
 /* ************************************************************************
   グローバルナヴィ
 */
 .global_nav_wrap {
-  height: 48px;
+  height: var(--header-bottom-height);
   width: 100%;
 }
 /* グローバルナヴィ > ul */
@@ -141,19 +162,31 @@ footer,
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   /*  */
   list-style-type: none;
+  background: none;
+  /* size */
+  height: var(--header-bottom-height);
 }
 
 /* グローバルナヴィ > ul > li */
 .global_nav_list_item {
   margin-right: 1rem;
+  height: 100%;
 }
 .global_nav_list_item:last-child {
   margin-right: 0;
 }
 
 /* グローバルナヴィ > ul > li > a */
+.global_nav_list_item_anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 .global_nav_list_item_anchor:link, 
 .global_nav_list_item_anchor:visited {
   color: inherit;
@@ -164,17 +197,45 @@ footer,
   opacity: 0.8;
 }
 
+/**************************************************************************
+  ハンバーガーアイコンで開くメニューパネル
+*/
+.hambruger_menue_container {
+  position: fixed;
+  z-index: 10000;
+  /* top の値は、js で、header の高さと同じにしなければ。 */
+  top: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-bottom-height) );
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background-color: #000;
+  opacity: 0.9;
+  /* 状態変化 */
+  transition-duration: 0.25s;
+  transition-property: background-color, color;
+  /* 不可視 */
+  display: none;
+}
+.hambruger_menue_container--open {
+  display: block;
+}
+
 
 /* ************************************************************************
   メインビジュアル
 */
+:root {
+  --main-visual-common-height: 80vh;
+}
+
 .main_visuals_outer_container {
-  height: 80vh;
-  
+  height: var(--main-visual-common-height);
+  margin-top: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-gap) + var(--header-bottom-height) );
 }
 /* メインビジュアル・セクションの内部ラップ */
 .main_visuals_inner_wrap {
   position: relative;
+  height: var(--main-visual-common-height);
   width: var(--common-width-of-header-and-key-visual);
   margin-right: auto;
   margin-left: auto;
@@ -186,7 +247,7 @@ footer,
   left: 0;
   overflow: hidden;
   width: 100%;
-  height: 80vh;
+  height: var(--main-visual-common-height);
   background-color: #000;
 }
 
@@ -206,59 +267,105 @@ footer,
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* メインビジュアル1枚のラップ, 共通設定2 : アニメーション */
-.main_visual__individual {
-  animation-name: main_visual_slider_anime;
+  /* アニメーションの共通設定 */
   animation-delay: 0;
   animation-iteration-count: infinite;
-  animation-duration: 24s; 
-}
-.main_visual__individual--01 {
-  background-image: url(https://placehold.jp/cc9999/999999/1920x800.png);
-}
-.main_visual__individual--02 {
-  animation-delay: 8s;
-  background-image: url(https://placehold.jp/99cc99/999999/1920x800.png);
-}
-.main_visual__individual--03 {
-  animation-delay: 16s;
-  background-image: url(https://placehold.jp/9999cc/999999/1920x800.png);
+  animation-duration: 24s;
 }
 
-@keyframes main_visual_slider_anime {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.02)  ;
-    -webkit-transform: scale(1.02)  ;
-    -moz-transform: scale(1.02)  ;
-    -ms-transform: scale(1.02)  ;
-    -o-transform: scale(1.02)  ;
-  }
+/* 1枚目のメインビジュアルのみの設定 */
+.main_visual__individual--01 {
+  animation-name: main_visual_slider_anime_01;
+  background-image: url(https://placehold.jp/cc9999/999999/1920x800.png);
+}
+/* 2枚目のメインビジュアルのみの設定 */
+.main_visual__individual--02 {
+  animation-name: main_visual_slider_anime_02;
+  background-image: url(https://placehold.jp/99cc99/999999/1920x800.png);
+}
+/* 3枚目のメインビジュアルのみの設定 */
+.main_visual__individual--03 {
+  animation-name: main_visual_slider_anime_03;
+  background-image: url(https://placehold.jp/9999cc/999999/1920x800.png);
+}
+/* 1枚目のアニメ */
+@keyframes main_visual_slider_anime_01 {
+  0% { opacity: 1;}
+  10%{ opacity: 1;}
+  30%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 1;}
+}
+/* 2枚目のアニメ */
+@keyframes main_visual_slider_anime_02 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 1;}
+  50%{ opacity: 1;}
+  60%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 0;}
+}
+/* 3枚目のアニメ */
+@keyframes main_visual_slider_anime_03 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 1;}
+  80%{ opacity: 1;}
+  90%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  100%{ opacity: 0;}
 }
 
 
 /* メインビジュアル上のボタン */
+:root {
+  /* 下記ボタンの width. 座標の計算にも用いる */
+  --button-on-main-visual--width: 200px;
+}
 .main_visual_button {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  top: calc(50% - 24px);
-  left: calc(50% - 100px);
-  width: 200px;
-  height: 48px;
-
-  background-color: gray;
+  /* 座標 */
+  top: 56%;
+  left: calc( 50% - calc(var(--button-on-main-visual--width)/2) );
+  /* Size */
+  width: var(--button-on-main-visual--width);
+  height: 50px;
   /* 内部テキストの中央寄せ */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* anchor としてのボタンの装飾 */
+  text-decoration: none;
+  color: white;
+  background-color: gray;
 }
 .main_visual_button{
   border-radius: 16px;
