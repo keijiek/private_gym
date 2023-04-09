@@ -1,0 +1,865 @@
+@charset "utf-8";
+
+/* ************************************************************************
+  Base
+*/
+
+body,
+header,
+main,
+footer, 
+.main_visuals_outer_container {
+  width: 100%;
+}
+
+/**
+  swiper
+*/
+/* .swiper {
+  width: 100%;
+  height: 300px;
+} */
+
+/**************************************************************************
+  変数
+*/
+:root {
+  /* ヘッダーとキービジュアル部の共通width */
+  --common-width-of-header-and-key-visual: 95%;
+  --common-width: 95%;
+  /* ヘッダー部分の高さ */
+  --header-upper-padding-top: 8px;
+  --header-upper-height: 50px;
+  --header-gap: 8px;
+  --header-bottom-height: 50px;
+}
+@media screen and (max-width: 792px) {
+  :root {
+    --header-gap: 0;
+    --header-bottom-height: 0;
+    --common-width-of-header-and-key-visual: 100%;
+    --common-width: 100%;
+  }
+}
+
+/* ************************************************************************
+  共通
+*/
+/*
+  色や形状を変化させる速度。共通設定。同じ速度で transform させたいクラスに付けておく。
+  文字色・背景色・opacity の3つに限った設定を盛り込んでいる。
+*/
+.transition_common {
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  
+  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+
+  transition-property:         color, background-color, opacity, transform, display;
+  -webkit-transition-property: color, background-color, opacity, transform, display;
+  -moz-transition-property:    color, background-color, opacity, transform, display;
+  -ms-transition-property:     color, background-color, opacity, transform, display;
+  -o-transition-property:      color, background-color, opacity, transform, display;
+}
+
+
+/* ************************************************************************
+  ヘッダー全体
+*/
+/* header tag */
+.header_outer_container {
+  padding-top: var(--header-upper-padding-top);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  /* color */
+  background-color: white;
+  color: #333;
+  /* Size */
+  height: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-bottom-height) );
+  width: 100%;
+}
+
+/* ハンバーガーメニューが開いている時の変化 */
+.header_outer_container.js_open {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: rgba(255, 255, 255, 0.95);
+  height: calc( var(--header-upper-padding-top) + var(--header-upper-height) );
+}
+
+
+/* ヘッダー内部ラップ */
+.header_inner_wrap {
+  width: var(--common-width-of-header-and-key-visual);
+  /* ボックス自体を中央寄せ */
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ヘッダー h1 */
+.header_global_logo {
+  font-size: 1.4rem;
+  height: 100%;
+}
+/* ヘッダー h1 > a */
+.header_global_logo__anchor {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ヘッダー > ロゴ&ボタン・ラップ */
+.header_upper_wrap {
+  /* Size */
+  width: 100%;
+  height: var(--header-upper-height);
+  /* flex settings */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+/* ヘッダー > ロゴ&ボタン・ラップ > ロゴ */
+.header_global_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ヘッダーの右上のラッパ (ボタン＆ハンバーガーアイコン) */
+.header_upper_right_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* ヘッダー > ロゴ&ボタン > ボタン群ラップ */
+.header_buttons_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: var(--header-upper-height);
+}
+@media screen and (max-width: 792px) {
+  .header_buttons_wrap {
+    display: none;
+  }
+}
+
+/* ヘッダー > ロゴ&ボタン > ボタン群ラップ > ボタン共通(<a>) */
+.header_anchor_button {
+  background-color: gray;
+  width: 200px;
+  height: 48px;
+  /* ブロック化。および、内部テキストを中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* anchor としてのボタンの装飾 */
+  text-decoration: none;
+  color: white;
+  /* マージン */
+  margin-right: 24px;
+}
+.header_anchor_button {
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+
+
+/** ************************************************************************
+  ハンバーガーアイコン
+*/
+/* ハンバーガーアイコン自体 */
+.hamburger_icon {
+  height: 48px;
+  width: 48px;
+  /* border */
+  border: 2px solid gray;
+  /* マウスオーバーでカーソルを変更 */
+  cursor : pointer;
+  /* flex 内容物の中央寄せ*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position */
+  position: relative;
+  /* right: 0; */
+}
+
+.hamburger_icon {
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+/* ハンバーガーアイコンの、内部の要素 */
+:root {
+   /* ハンバーガーの線の太さ */
+   --hambruger-thickness: 4px;
+}
+
+.hambruger_icon__span {
+  /* transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease; */
+}
+/* ハンバーガー・アイコン内部の線 */
+.hambruger_icon__bar {
+  display: block;
+  position: absolute;
+  height: var(--hambruger-thickness);
+  width: 80%;
+  left: 10%;
+  background-color: gray;
+}
+
+/* 上の線。通常時 */
+.hamburger_icon > .hambruger_icon__bar:first-child {
+  top: 20%;
+}
+/* 上の線。オープン時の、色と形の変化 */
+.hamburger_icon.js_open > .hambruger_icon__bar:first-child {
+  background-color: white;
+  top: 50%;
+
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+/* 下の線 */
+.hamburger_icon > .hambruger_icon__bar:last-child {
+  top: calc(80% - var(--hambruger-thickness));
+}
+/* 下の線。オープン時の、色と形の変化 */
+.hamburger_icon.js_open > .hambruger_icon__bar:last-child {
+  background-color: white;
+  top: 50%;
+
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+/* ハンバーガー・アイコン・中央の文字列 */
+.hambruger_icon__string {
+  /* 親の flex 設定による中央寄せの影響を受けたいので position : static */
+  position: static;
+  /* 文字設定 */
+  font-size: 10px;
+  font-weight: bold;
+  color: gray;
+}
+/* 中央の文字列、オープン時 */
+.hamburger_icon.js_open > .hambruger_icon__string {
+  display: none;
+}
+
+
+/* ************************************************************************
+  グローバルナヴィ
+*/
+.global_nav_wrap {
+  height: var(--header-bottom-height);
+  width: 100%;
+}
+
+@media screen and (max-width: 792px) {
+  .global_nav_wrap {
+    display: none;
+  }
+}
+
+/* グローバルナヴィ > ul */
+.global_nav_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  /*  */
+  list-style-type: none;
+  background: none;
+  /* size */
+  height: var(--header-bottom-height);
+}
+
+/* グローバルナヴィ > ul > li */
+.global_nav_list_item {
+  margin-right: 1rem;
+  height: 100%;
+}
+.global_nav_list_item:last-child {
+  margin-right: 0;
+}
+
+/* グローバルナヴィ > ul > li > a */
+.global_nav_list_item_anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.global_nav_list_item_anchor:link, 
+.global_nav_list_item_anchor:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.global_nav_list_item_anchor:hover, 
+.global_nav_list_item_anchor:active {
+  opacity: 0.8;
+}
+
+/**************************************************************************
+  メニューパネル。ハンバーガーアイコンで開閉。
+*/
+.hambruger_menue_container {
+  position: fixed;
+  z-index: -1000;
+  top: calc( var(--header-upper-padding-top) + var(--header-upper-height) );
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background-color: rgba(0,0,0,0);
+
+  /* 不可視 */
+  /* display: none; */
+}
+.hambruger_menue_container {
+  /* transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s; */
+}
+/* メニューパネル・オープン時 */
+.hambruger_menue_container.js_open {
+  /* display: block; */
+  z-index: 10000;
+  background-color: rgba(0,0,0,0.95);
+}
+
+
+
+
+/* ************************************************************************
+  メインビジュアル
+*/
+:root {
+  --main-visual-common-height: 80vh;
+}
+
+.main_visuals_outer_container {
+  height: var(--main-visual-common-height);
+  margin-top: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-gap) + var(--header-bottom-height) );
+}
+@media screen and (max-width: 792px) {
+  .main_visuals_outer_container {
+    margin-top: calc( var(--header-upper-padding-top) + var(--header-upper-height));
+  }
+}
+
+/* メインビジュアル・セクションの内部ラップ */
+.main_visuals_inner_wrap {
+  position: relative;
+  height: var(--main-visual-common-height);
+  width: var(--common-width-of-header-and-key-visual);
+  margin-right: auto;
+  margin-left: auto;
+}
+/* メインビジュアルの画像群のラップ */
+.main_visual__slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: var(--main-visual-common-height);
+  background-color: #000;
+}
+
+/* メインビジュアル1枚のラップ, 共通設定1 : アニメ以外 */
+.main_visual__individual {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  /* 内部テキストdivの中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* アニメーションの共通設定 */
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+}
+
+/* 1枚目のメインビジュアルのみの設定 */
+.main_visual__individual--01 {
+  animation-name: main_visual_slider_anime_01;
+  background-image: url(https://placehold.jp/cc9999/999999/1920x800.png);
+}
+/* 2枚目のメインビジュアルのみの設定 */
+.main_visual__individual--02 {
+  animation-name: main_visual_slider_anime_02;
+  background-image: url(https://placehold.jp/99cc99/999999/1920x800.png);
+}
+/* 3枚目のメインビジュアルのみの設定 */
+.main_visual__individual--03 {
+  animation-name: main_visual_slider_anime_03;
+  background-image: url(https://placehold.jp/9999cc/999999/1920x800.png);
+}
+/* 1枚目のアニメ */
+@keyframes main_visual_slider_anime_01 {
+  0% { opacity: 1;}
+  10%{ opacity: 1;}
+  30%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 1;}
+}
+/* 2枚目のアニメ */
+@keyframes main_visual_slider_anime_02 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 1;}
+  50%{ opacity: 1;}
+  60%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 0;}
+}
+/* 3枚目のアニメ */
+@keyframes main_visual_slider_anime_03 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 1;}
+  80%{ opacity: 1;}
+  90%{ opacity: 1;
+    transform: scale(1.05)  ;
+    -webkit-transform: scale(1.05)  ;
+    -moz-transform: scale(1.05)  ;
+    -ms-transform: scale(1.05)  ;
+    -o-transform: scale(1.05)  ;}
+  100%{ opacity: 0;}
+}
+
+
+/* メインビジュアル上のボタン */
+:root {
+  /* 下記ボタンの width. 座標の計算にも用いる */
+  --button-on-main-visual--width: 200px;
+}
+.main_visual_button {
+  position: absolute;
+  z-index: 2;
+  /* 座標 */
+  top: 64%;
+  left: calc( 50% - calc(var(--button-on-main-visual--width)/2) );
+  /* Size */
+  width: var(--button-on-main-visual--width);
+  height: 50px;
+  /* 内部テキストの中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* anchor としてのボタンの装飾 */
+  text-decoration: none;
+  color: white;
+  background-color: gray;
+}
+.main_visual_button{
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+
+/* ************************************************************************
+  SNSアイコン群
+*/
+:root {
+  --sns-icons-size: 48px;
+}
+.icons_container {
+  position: fixed;
+  z-index: 10001;
+  flex-direction: column;
+  justify-content: space-around;
+  right: 0;
+  top: 40%;
+  width: var(--sns-icons-size);
+  height: calc( calc(var(--sns-icons-size)*2) + calc(var(--sns-icons-size)/2) );
+}
+.icons_container__indivisual_icon {
+  display: block;
+  width: var(--sns-icons-size);
+  height: var(--sns-icons-size);
+  margin-bottom: calc(var(--sns-icons-size)/2);
+}
+.icons_container__indivisual_icon:last-child {
+  margin-bottom: 0;
+}
+.icons_container__indivisual_icon > img {
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+
+/* ************************************************************************
+  Features Section
+*/
+.features_section {
+  margin: 32px auto;
+  width: var(--common-width);
+  max-width: 1920px;
+}
+
+/* ************************************************************************
+  スライダー 01 (for Features section)
+  swiper.js を使用。
+*/
+/* 一枚のスライドの内部ラップ。relative にして、内部の文字列を、内部の絵の上にオーバーレイさせるため。 */
+.slider_01_card__inner_wrap {
+  position: relative;
+}
+/* 画像 */
+.slider_01_card__inner_wrap > img {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+/* 文字列・オーバーレイ */
+.slider_01_card__overlay_text {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+}
+
+
+/* ************************************************************************
+  Facilities Section
+*/
+.facilities_section {
+  width: var(--common-width);
+  max-width: 1920px;
+  margin: 32px auto;
+}
+
+/* 画像ラップ */
+.slider_02_card__img_wrap {
+}
+/* 画像 */
+.slider_02_card__img_wrap > img {
+  height: auto;
+  width: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+/* 解説文 */
+.slider_02_card__description {
+  text-align: left;
+}
+
+
+/* ************************************************************************
+  Footer
+*/
+
+/* ************************************************************************
+  新スライダー付きカード
+*/
+.card_section_containing_slider {
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  
+  background-color: #333;
+}
+.card_section_containing_slider__inner_wrap {
+  width: var(--common-width);
+  margin: 0 auto;
+  padding: 16px 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+@media screen and (max-width: 792px) {
+  .card_section_containing_slider__inner_wrap {
+    flex-direction: column;
+  }
+}
+
+/* スライダー側・外側ラップ */
+.card_section_containing_slider__swiper_outer_wrap {
+  max-width: 960px;
+  width: 50%;
+  margin: 32px;
+}
+
+/* テキスト側・外側ラップ */
+.card_section_containing_slider__text_outer_wrap {
+  width: 50%;
+  
+  margin: auto;
+  color: white;
+}
+
+/* スライダー内・画像*/
+.card_section_containing_slider__img_wrap {
+  width: 100%;
+  height: 100%;
+}
+.card_section_containing_slider__img_wrap > img {
+  height: auto;
+  width: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+  border-bottom-right-radius: 32px;
+}
+
+/* ************************************************************************
+  footer slider section 
+*/
+:root {
+  /* --footer-slider-section--common-height: 320px; */
+  --footer-slider-section--padding: 20px;
+  --footer-slider-section--slider-width: 50vw;
+  --footer-slider-section--slider-height: calc(var(--footer-slider-section--slider-width)*calc(2/3));
+}
+
+/* スライダーを含むセクション全体 */
+.footer_slider_section {
+  width: 100%;
+  height: calc(var(--footer-slider-section--slider-height) + 64px);
+
+  /* flex */
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* 色 */
+  background-color: #333;
+  color: white;
+}
+@media screen and (max-width: 792px) {
+  .footer_slider_section {
+    flex-direction: column;
+    height: calc( calc(var(--footer-slider-section--slider-height)*5) + 32px);
+  }
+}
+
+
+/* footer slider section 右側 */
+.footer_slider_section__slider_area {
+  background-color: transparent;
+  position: relative;
+  max-width: 1080px;
+  max-height: 720px;
+  width: var(--footer-slider-section--slider-width);
+  height: var(--footer-slider-section--slider-height);
+}
+@media screen and (max-width: 792px) {
+  .footer_slider_section__slider_area {
+    height: calc(var(--footer-slider-section--slider-height) * 1.5);
+    /* height: 480px; */
+    width: 96%;
+    margin-left: -4%;
+    margin-top: 32px;
+  }
+}
+
+/* footer スライダー img 共通設定 */
+.footer_slider_section__slider_image {
+  max-width: 100%;
+  /* height: var(--footer-slider-section--slider-height); */
+  vertical-align:bottom;
+  object-fit: cover;
+  border-bottom-right-radius: 32px;
+}
+/*  */
+.footer_slider_section__slider_image_wrap--01,
+.footer_slider_section__slider_image_wrap--02,
+.footer_slider_section__slider_image_wrap--03 {
+  /* absolute, 重なり, 座標 */
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  /* height: var(--footer-slider-section--slider-height); */
+
+  /* アニメーションの共通設定 */
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-duration: 18s;
+}
+@media screen and (max-width: 792px) {
+  .footer_slider_section__slider_image_wrap--01,
+  .footer_slider_section__slider_image_wrap--02,
+  .footer_slider_section__slider_image_wrap--03 {
+    height: calc(var(--footer-slider-section--slider-height) * 1.5);
+  }
+}
+
+/* アニメーションの個別設定 */
+.footer_slider_section__slider_image_wrap--01 {
+  animation-name: footer_slider_anime_01;
+}
+.footer_slider_section__slider_image_wrap--02 {
+  animation-name: footer_slider_anime_02;
+}
+.footer_slider_section__slider_image_wrap--03 {
+  animation-name: footer_slider_anime_03;
+}
+
+/* footer slider section 右側のエリア。小画面時は下 */
+.footer_slider_section__text_area {
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (max-width: 792px) {
+  .footer_slider_section__text_area {
+    width: 80vw;
+    position: relative;
+    top: calc(100vw * calc(1/6));
+  }
+}
+
+/* リスト */
+.footer_slider_section__anchor_list {
+  padding-left: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 16px;
+}
+.footer_slider_section__anchor_list a {
+  color: white;
+  text-decoration: none;
+}
+
+
+/* button 03 */
+.button_style_03 {
+  width: 200px;
+  height: 50px;
+  /* ボタン中央寄せ */
+  margin-right: auto;
+  margin-left: auto;
+  /* 色 */
+  background-color: gray;
+  color: white;
+  /* 内部の中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button_style_03 {
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+
+/* footer slider のアニメーション・ルール */
+@keyframes footer_slider_anime_01 {
+  0% { opacity: 1;}
+  10%{ opacity: 1;}
+  30%{ opacity: 1;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 1;}
+}
+@keyframes footer_slider_anime_02 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 1;}
+  50%{ opacity: 1;}
+  60%{ opacity: 1;}
+  70%{ opacity: 0;}
+  80%{ opacity: 0;}
+  90%{ opacity: 0;}
+  100%{ opacity: 0;}
+}
+@keyframes footer_slider_anime_03 {
+  0% { opacity: 0;}
+  10%{ opacity: 0;}
+  30%{ opacity: 0;}
+  40%{ opacity: 0;}
+  50%{ opacity: 0;}
+  60%{ opacity: 0;}
+  70%{ opacity: 1;}
+  80%{ opacity: 1;}
+  90%{ opacity: 1;}
+  100%{ opacity: 0;}
+}

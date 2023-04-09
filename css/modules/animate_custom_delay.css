@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/*
+  animate.css の自作追加クラス, delay のさらに短いバージョン
+*/
+.animate__animated.animate__delay-1s-half {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+
+
+.animate__animated.animate__delay-005s {
+  -webkit-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+.animate__animated.animate__delay-010s {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.animate__animated.animate__delay-015s {
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+.animate__animated.animate__delay-020s {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.animate__animated.animate__delay-025s {
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+.animate__animated.animate__delay-030s {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.animate__animated.animate__delay-035s {
+  -webkit-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+.animate__animated.animate__delay-040s {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.animate__animated.animate__delay-045s {
+  -webkit-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+.animate__animated.animate__delay-050s {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.animate__animated.animate__delay-055s {
+  -webkit-animation-delay: 0.55s;
+  animation-delay: 0.55s;
+}
+.animate__animated.animate__delay-060s {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+.animate__animated.animate__delay-070s {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.animate__animated.animate__delay-080s {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+.animate__animated.animate__delay-090s {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+
+/* 0.5秒刻み, 1秒以降 */
+.animate__animated.animate__delay-100s {
+  -webkit-animation-delay: 1.0s;
+  animation-delay: 1.0s;
+}
+.animate__animated.animate__delay-150s {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+.animate__animated.animate__delay-150s {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+.animate__animated.animate__delay-200s {
+  -webkit-animation-delay: 2.0s;
+  animation-delay: 2.0s;
+}
+.animate__animated.animate__delay-250s {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+}
+.animate__animated.animate__delay-300s {
+  -webkit-animation-delay: 3.0s;
+  animation-delay: 3.0s;
+}
+.animate__animated.animate__delay-350s {
+  -webkit-animation-delay: 3.5s;
+  animation-delay: 3.5s;
+}
+.animate__animated.animate__delay-400s {
+  -webkit-animation-delay: 4.0s;
+  animation-delay: 4.0s;
+}
+.animate__animated.animate__delay-450s {
+  -webkit-animation-delay: 4.5s;
+  animation-delay: 4.5s;
+}
