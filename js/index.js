@@ -61,10 +61,10 @@ class GlobalNavigator extends ControlledElementBase {
  */
 class HamburgerIcon {
 
-  constructor(ARGS) {
+  constructor() {
     this.element = document.getElementById('js_hambruger_icon');
     this.isOpen = false;
-    this.openClassName = ARGS.CLASS__OPEN_OR_VISIBLE;
+    this.openClassName = 'js_open';
     // ヘッダー
     this.headerPanel = new HeaderPanel('js_header');
     // グローバルナヴィ
@@ -128,21 +128,20 @@ class HamburgerIcon {
 
 
 /**
- * 
+ * swiper 共通設定。スプレッド構文(...)でオブジェクト内に入れる。
  */
 const commonSwiperOptions = {
-
+  loop: true, //最後に達したら先頭に戻る
+  initialSlide: 0,  //初期状態で焦点を当あてるスライド番号。0=一枚目
+  direction: 'horizontal', // 規定値は horizontal なので不要だが、いちおう。 'vertical' もある。
+  centeredSlides: true,
+  centerInsufficientSlides: true,
 }
+
 // エントリーポイント
 window.addEventListener('DOMContentLoaded',()=>{
-  const ARGS = {
-    ID__HAMBRUGER_ICON: 'js_hambruger_icon',
-    ID__HEADER: 'js_header',
-    CLASS__HAMBRUGER_LINE: 'js_hambruger_icon__span',
-    CLASS__OPEN_OR_VISIBLE: 'js_open',
-  }
-  const hambrugerIcon = new HamburgerIcon(ARGS);
-  hambrugerIcon.eventAdder();
+  // ハンバーガーアイコンの機能を生成し、イベントに関数を割り当て。
+  ( new HamburgerIcon() ).eventAdder();
 
 
   /**
@@ -153,7 +152,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     loop: true, //最後に達したら先頭に戻る
     initialSlide: 0,  //初期状態で焦点を当あてるスライド番号。0=一枚目
     direction: 'horizontal', // 規定値は horizontal なので不要だが、いちおう。 'vertical' もある。
-    slidesPerView: '1.1', //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
+    slidesPerView: '2', //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
     spaceBetween: 10,
     speed: 400, // スライドアニメーションのスピード（ミリ秒）
     // setWrapperSize:true,
@@ -163,7 +162,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     // ブレイクポイント。直下オブジェクトのキーとなる数値は min-width と同じ。「ViewPort の width が Xpx 以上なら～」という設定の仕方。
     breakpoints: {
       400: {
-        slidesPerView: '1.4',
+        slidesPerView: '2',
         spaceBetween: 10,
       },
       660: {
@@ -194,18 +193,19 @@ window.addEventListener('DOMContentLoaded',()=>{
       disableOnInteraction: true, //ユーザーが操作したら止めるか
       pauseOnMouseEnter: true,
     },
-    // ナヴィボタン。
+
+    // ナヴィボタン。不要なら、html上の要素と、この設定オブジェクトを消す。
     navigation: {
       nextEl: '.features_section .swiper-button-next',
       prevEl: '.features_section .swiper-button-prev',
     },
-    // ページネーション。
+    // ページネーション。不要なら、html上の要素と、この設定オブジェクトを消す。
     pagination: {
       el: '.features_section .swiper-pagination', 
       type: 'bullets',// fraction, progressbar
       clickable: true,
     },
-    // スクロールバー。
+    // スクロールバー。不要なら、html上の要素と、この設定オブジェクトを消す。
     scrollbar: {
       el: '.features_section .swiper-scrollbar',
       draggable: true,
@@ -218,17 +218,15 @@ window.addEventListener('DOMContentLoaded',()=>{
   const swiper_02 = new Swiper('.facilities_section .swiper', {
     loop: true, //最後に達したら先頭に戻る
     initialSlide: 0,
-    //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
-    slidesPerView: '1.1', 
-    // slidesPerView: 'auto',
-    spaceBetween: 0,
+    
     speed: 400, // スライドアニメーションのスピード（ミリ秒）
     setWrapperSize:true,
     centeredSlides: true,
     centerInsufficientSlides: true,
 
-    innerWidth: 320,
-    innnerHeight: 480,
+    //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
+    slidesPerView: '1.1', 
+    spaceBetween: 0,
     breakpoints: {
       500: {
         slidesPerView: '1.3',
@@ -265,6 +263,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     },
   });
 
+  /*
+   * footer の、フェードで切り替わる画像(=スライダー)つきセクションの、スライダーの設定
+   */
   const swiper_footer_slider = new Swiper('.card_section_containing_slider__swiper_outer_wrap .swiper', {
     loop: true,
     speed: 1000, // スライドアニメーションのスピード（ミリ秒）
@@ -273,7 +274,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       crossFade: true,
     },
     autoplay: {
-      delay: 5000,
+      delay: 5000,// 待ち時間
       disableOnInteraction: false,
       waitForTransition: false,
     },
