@@ -81,13 +81,9 @@ footer,
 */
 /* header tag */
 .header_outer_container {
-
   position: fixed;
   top: 0;
   z-index: 1000;
-  /* color */
-  background-color: white;
-  color: #333;
   /* Size */
   height: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-bottom-height) );
   width: 100%;
@@ -310,12 +306,25 @@ footer,
 .global_nav_wrap {
   height: var(--header-bottom-height);
   width: 100%;
+  background-color: white;
+  color: #000;
+}
+
+.header_outer_container.header_outer_container.js_open .global_nav_wrap {
+  background-color: rgba(0,0,0,0.95);
+  color: white;
 }
 
 @media screen and (max-width: 792px) {
   .global_nav_wrap {
     display: none;
   }
+}
+
+.global_nav_wrap__inner_wrap {
+  width: var(--common-width-of-header-and-key-visual);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* グローバルナヴィ > ul */
