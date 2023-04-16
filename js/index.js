@@ -182,10 +182,6 @@ window.addEventListener('DOMContentLoaded',()=>{
         slidesPerView: '3',
         spaceBetween: 20,
       },
-      1500: {
-        slidesPerView: '3.5',
-        spaceBetween: 20,
-      }
     },
 
     // エフェクト選択。スライダーの機能ががらりと変わる。'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'creative' | 'cards'
@@ -231,19 +227,19 @@ window.addEventListener('DOMContentLoaded',()=>{
 
     //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
     slidesPerView: '1.1', 
-    spaceBetween: 10,
+    spaceBetween: 20,
     breakpoints: {
       500: {
         slidesPerView: '1.3',
-        spaceBetween: 10,
+        spaceBetween: 20,
       },
       700: {
         slidesPerView: '1.5',
-        spaceBetween: 10,
+        spaceBetween: 20,
       },
       960: {
         slidesPerView: '2',
-        spaceBetween: 10,
+        spaceBetween: 20,
       },
       1500: {
         slidesPerView: '3',
