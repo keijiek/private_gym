@@ -11,13 +11,11 @@
   <link rel="stylesheet" href="css/modules/animate_custom_delay.css">
   <!-- css: swiper.css。swiper-bundle.min.js と一緒に用いる。 -->
   <link rel="stylesheet" href="css/modules/swiper-bundle.min.css"/>
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/> -->
   <!-- css: 自作。 -->
   <link rel="stylesheet" href="css/common.css">
 
   <!-- JS: swiper.js。swiper-bundle.min.css と一緒に用いる。 -->
   <script src="js/modules/swiper-bundle.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
   <!-- JS: 自作。ハンバーガーアイコンの機能、swiper.js の設定 -->
   <script src="js/index.js"></script>
 
@@ -25,50 +23,54 @@
 </head>
 <body>
   <!-- header -->
-  <header id="js_header" class="header_outer_container transition_common">
-    <div class="header_inner_wrap transition_common">
+  <header id="js_header" class="header_outer_container">
+    <div class="header_inner_wrap">
 
       <!-- Logo and Buttons -->
-      <div class="header_upper_wrap transition_common">
+      <div id="js_header_upper_wrap" class="header_upper_wrap">
         <div class="header_upper_wrap__inner_wrap">
+          
           <!-- LOGO -->
-          <h1 class="header_global_logo">
+          <h1 class="header_global_logo animate__animated animate__fadeInDown">
             <a class="header_global_logo__anchor" href="./">貸し切りプライベートジム</a>
           </h1>
 
+          <!-- ボタンとアイコンのラップ (LOGO と兄弟) -->
           <div class="header_upper_right_wrap">
 
             <!-- ボタン -->
             <div class="header_buttons_wrap">
-              <a class="header_anchor_button header_anchor_button--usage_flow" href="#">
+              <a class="header_anchor_button header_anchor_button--usage_flow animate__animated animate__fadeInDown animate__delay-020s" href="#">
                 予約から利用の流れ
               </a>
-              <a class="header_anchor_button header_anchor_button--line_reservation" href="#">
+              <a class="header_anchor_button header_anchor_button--line_reservation animate__animated animate__fadeInDown animate__delay-025s" href="#">
                 LINEで簡単予約
               </a>
             </div>
 
             <!-- ハンバーガーアイコン -->
-            <div id="js_hambruger_icon" class="hamburger_icon transition_common">
-              <span class="transition_common hambruger_icon__span hambruger_icon__bar"></span>
-              <span class="transition_common hambruger_icon__span hambruger_icon__string">menu</span>
-              <span class="transition_common hambruger_icon__span hambruger_icon__bar"></span>
+            <div id="js_hambruger_icon" class="hamburger_icon animate__animated animate__fadeInDown animate__delay-030s">
+              <span class="hambruger_icon__span hambruger_icon__bar"></span>
+              <span class="hambruger_icon__span hambruger_icon__string">menu</span>
+              <span class="hambruger_icon__span hambruger_icon__bar"></span>
             </div>
+
           </div>
+
         </div>
-      </div>
+      </div><!-- .header_upper_wrap ends -->
 
       <!-- global nav -->
       <nav id="js_global_nav" class="global_nav_wrap">
         <div class="global_nav_wrap__inner_wrap">
           <ul class="global_nav_list">
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">貸切プライベートジムとは?</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">施設紹介</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">アクセス</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">システム・料金</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">パーソナルトレーニング</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">スタジオレッスン(ヨガ・ダンスなど)</a></li>
-            <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">お問い合わせ</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-005s"><a class="global_nav_list_item_anchor" href="#">貸切プライベートジムとは?</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-010s"><a class="global_nav_list_item_anchor" href="#">施設紹介</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-015s"><a class="global_nav_list_item_anchor" href="#">アクセス</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-020s"><a class="global_nav_list_item_anchor" href="#">システム・料金</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-025s"><a class="global_nav_list_item_anchor" href="#">パーソナルトレーニング</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-030s"><a class="global_nav_list_item_anchor" href="#">スタジオレッスン(ヨガ・ダンスなど)</a></li>
+            <li class="global_nav_list_item animate__animated animate__fadeInDown animate__delay-035s"><a class="global_nav_list_item_anchor" href="#">お問い合わせ</a></li>
           </ul>
         </div>
       </nav>
@@ -77,28 +79,28 @@
   </header>
 
   <!-- ハンバーガーアイコンで表示されるメニューコンテナ -->
-  <section id="js_hambruger_menu" class="hambruger_menue_container transition_common">
+  <section id="js_hambruger_menu" class="hambruger_menue_container">
     <!-- ハンバーガーメニュ― -->
     <nav class="hambruger_menue">
       <ul class="hambruger_menue__list">
-        <li class="hambruger_menue__item"><a class="" href=""></a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">貸切プライベートジムとは?</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">施設紹介</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">アクセス</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">システム・料金</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">パーソナルトレーニング</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">スタジオレッスン(ヨガ・ダンスなど)</a></li>
-        <li class="global_nav_list_item"><a class="global_nav_list_item_anchor" href="#">お問い合わせ</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">貸切プライベートジムとは</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">施設紹介</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">アクセス</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">システム・料金</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">パーソナルトレーニング</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">スタジオレッスン(ヨガ・ダンスなど)</a></li>
+        <li class="hambruger_menue__item"><a class="" href="">お問い合わせ</a></li>
+        
       </ul>
     </nav>
   </section>
   
   <!-- 右端のSNSアイコン群 -->
   <aside class="icons_container">
-    <a class="icons_container__indivisual_icon" href="#">
+    <a class="icons_container__indivisual_icon animate__animated animate__fadeInRight animate__delay-010s" href="#">
       <img src="https://placehold.jp/339933/ffffff/100x100.png" alt="">
     </a>
-    <a class="icons_container__indivisual_icon" href="#">
+    <a class="icons_container__indivisual_icon animate__animated animate__fadeInRight animate__delay-020s" href="#">
       <img src="https://placehold.jp/333399/ffffff/100x100.png" alt="">
     </a>
   </aside>
@@ -151,78 +153,71 @@
           <!-- swiper-wrapper -->
           <div class="swiper-wrapper">
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/993333/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>完全貸切マシン独占</h3>
+                  <h3>1. 完全貸切マシン独占</h3>
                   <p>人目を気にせず自由にトレーニングが可能です。</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/339933/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>時間がない人にもおすすめ</h3>
+                  <h3>2. 時間がない人にもおすすめ</h3>
                   <p>マシンを自由に独占できて使い放題なので効率的なトレーニンが可能です</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/333399/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>音響設備完備</h3>
+                  <h3>3. 音響設備完備</h3>
                   <p>自分の好きな音楽をかけながら開放的にトレーニングが可能です。</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/cc9999/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>無料駐車場完備</h3>
+                  <h3>4. 無料駐車場完備</h3>
                   <p>お客様専用駐車場を無料でご用意しております。</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/99cc99/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>365日朝5時〜夜12時まで営業</h3>
+                  <h3>5. 365日朝5時〜夜12時まで営業</h3>
                   <p>自分のライフスタイルに合わせたトレーニングが可能です。</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
             <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/9999cc/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>徹底したウイルス対策</h3>
+                  <h3>6. 徹底したウイルス対策</h3>
                   <p>安心の、抗菌・防臭・抗ウイルス対策済みです。</p>
                 </div>
               </div>
             </div>
 
-            <!-- card -->
-            <div class="swiper-slide slider_01_card">
+            <div class="swiper-slide">
               <div class="slider_01_card__inner_wrap">
-                <img src="https://placehold.jp/cccccc/ffffff/320x480.png" alt="">
+                <img src="https://placehold.jp/999999/ffffff/320x480.png" alt="">
                 <div class="slider_01_card__overlay_text">
-                  <h3>手続き簡単</h3>
+                  <h3>7. 手続き簡単</h3>
                   <p>入会・予約・鍵の発行・決済まですべてスマホ１台で簡単完結できます。</p>
                 </div>
               </div>
@@ -378,47 +373,15 @@
                 <li><a href="#">スタジオ</a></li>
               </ol>
             </div>
-            <a class="button_style_03" href="#">
+            <a class="card_section_containing_slider__button" href="#">
               LINEで簡単予約
             </a>
           </div>
 
         </div><!-- inner_wrap ends-->
-      </section>
+      </section><!-- card_section_containing_slider ends -->
 
-
-      <!-- footer 下段の黒いセクション -->
-      <section class="footer_slider_section" style="display:none;">
-
-        <!-- 左の写真のセクション -->
-        <div class="footer_slider_section__slider_area">
-          <div class="footer_slider_section__slider_image_wrap--01">
-            <img class="footer_slider_section__slider_image" src="https://placehold.jp/3d4070/ffffff/1080x720.png" alt="">
-          </div>
-          <div class="footer_slider_section__slider_image_wrap--02">
-            <img class="footer_slider_section__slider_image" src="https://placehold.jp/703d40/ffffff/1080x720.png" alt="">
-          </div>
-          <div class="footer_slider_section__slider_image_wrap--03">
-            <img class="footer_slider_section__slider_image" src="https://placehold.jp/3d7040/ffffff/1080x720.png" alt="">
-          </div>
-        </div>
-
-        <!-- 右の文字列セクション -->
-        <div class="footer_slider_section__text_area">
-          <h2>DAYLEADロゴ</h2>
-          <p>スポーツで日常を導く</p>
-          <ol class="footer_slider_section__anchor_list">
-            <li><a href="#">貸し切りプライベートジム</a></li>
-            <li><a href="#">パーソナルトレーニングジム</a></li>
-            <li><a href="#">スタジオ</a></li>
-          </ol>
-          <a class="button_style_03" href="#">
-            LINEで簡単予約
-          </a>
-        </div>
-      </section>
-
-    </div>
+    </div><!-- footer_inner_wrap ends -->
   </footer>
 
 </body>

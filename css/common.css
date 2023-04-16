@@ -12,13 +12,6 @@ footer,
   width: 100%;
 }
 
-/**
-  swiper
-*/
-/* .swiper {
-  width: 100%;
-  height: 300px;
-} */
 
 /**************************************************************************
   変数
@@ -43,49 +36,14 @@ footer,
 }
 
 /* ************************************************************************
-  共通
-*/
-/*
-  色や形状を変化させる速度。共通設定。同じ速度で transform させたいクラスに付けておく。
-  文字色・背景色・opacity の3つに限った設定を盛り込んでいる。
-*/
-.transition_common {
-  transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  -moz-transition-duration: 1s;
-  -ms-transition-duration: 1s;
-  -o-transition-duration: 1s;
-
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
-  -moz-transition-timing-function: ease;
-  -ms-transition-timing-function: ease;
-  -o-transition-timing-function: ease;
-  
-  transition-delay: 0s;
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  -ms-transition-delay: 0s;
-  -o-transition-delay: 0s;
-
-  transition-property:         color, background-color, opacity, transform, display;
-  -webkit-transition-property: color, background-color, opacity, transform, display;
-  -moz-transition-property:    color, background-color, opacity, transform, display;
-  -ms-transition-property:     color, background-color, opacity, transform, display;
-  -o-transition-property:      color, background-color, opacity, transform, display;
-}
-
-
-/* ************************************************************************
   ヘッダー全体
 */
-/* header tag */
+/* header tag 自体 */
 .header_outer_container {
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
   /* Size */
-  height: calc( var(--header-upper-padding-top) + var(--header-upper-height) + var(--header-bottom-height) );
   width: 100%;
 }
 
@@ -107,29 +65,32 @@ footer,
   align-items: center;
 }
 
-/* ヘッダー・上ラップの色。 */
+/* ヘッダー・上ラップ、平時の設定。 */
 .header_outer_container .header_upper_wrap {
   padding-top: var(--header-upper-padding-top);
   width: 100%;
   height: 100%;
-  /* color */
+  /* color。js_open 時はこれらの色が変更される */
   background-color: white;
   color: #333;
 }
-/* ヘッダー・上ラップの色が、js_open 下で変色 */
+/* ヘッダー・上ラップ、外見の変化速度 */
+.header_outer_container .header_upper_wrap {
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+}
+/* ヘッダー・上ラップの色が、js_open 下で変色。 */
 .header_outer_container.js_open .header_upper_wrap {
   background-color: rgba(0, 0, 0, 0.95);
   color: rgba(255, 255, 255, 0.95);
-  /* height: calc( var(--header-upper-padding-top) + var(--header-upper-height) ); */
 }
 
 
 /* ヘッダー内部ラップ */
 .header_inner_wrap {
-  /* width: var(--common-width-of-header-and-key-visual); */
-  /* ボックス自体を中央寄せ */
-  /* margin-right: auto;
-  margin-left: auto; */
 }
 
 /* ヘッダー h1 */
@@ -137,6 +98,7 @@ footer,
   font-size: 1.4rem;
   height: 100%;
 }
+
 /* ヘッダー h1 > a */
 .header_global_logo__anchor {
   text-decoration: none;
@@ -238,10 +200,17 @@ footer,
    --hambruger-thickness: 4px;
 }
 
+/* ハンバーガーアイコンの内部の線。選択されない(カーソルがつかない)ようにする */
 .hambruger_icon__span {
-  /* transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: ease; */
+  user-select: none;
+}
+/* 変化速度の設定 */
+.hambruger_icon__span {
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
 }
 /* ハンバーガー・アイコン内部の線 */
 .hambruger_icon__bar {
@@ -293,10 +262,12 @@ footer,
   font-size: 10px;
   font-weight: bold;
   color: gray;
+  /* visibility */
+  opacity: 1;
 }
 /* 中央の文字列、オープン時 */
 .hamburger_icon.js_open > .hambruger_icon__string {
-  display: none;
+  opacity: 0;
 }
 
 
@@ -304,15 +275,13 @@ footer,
   グローバルナヴィ
 */
 .global_nav_wrap {
+  visibility: visible;
   height: var(--header-bottom-height);
   width: 100%;
-  background-color: white;
-  color: #000;
 }
-
+/* グローバルナヴィ。メニューパネルのopen時には不可視 */
 .header_outer_container.header_outer_container.js_open .global_nav_wrap {
-  background-color: rgba(0,0,0,0.95);
-  color: white;
+  visibility: hidden;
 }
 
 @media screen and (max-width: 792px) {
@@ -344,13 +313,31 @@ footer,
 .global_nav_list_item {
   margin-right: 1rem;
   height: 100%;
+  /* 通常は可視状態。js_open時に opacity:0 にする。 */
+  opacity: 1;
+  visibility: visible;
 }
+/* グローバルナヴィ > ul > li 最終要素の右マージンは無し */
 .global_nav_list_item:last-child {
   margin-right: 0;
+}
+/* グローバルナヴィ > ul > li 変化速度*/
+.global_nav_list_item {
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+}
+/* グローバルナヴィ > ul > li は、ハンバーガーメニュー・オープン時に不可視 */
+.header_outer_container.header_outer_container.js_open .global_nav_list_item {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* グローバルナヴィ > ul > li > a */
 .global_nav_list_item_anchor {
+  /* 中央寄せのためのflex */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -372,30 +359,46 @@ footer,
 */
 .hambruger_menue_container {
   position: fixed;
-  z-index: -1000;
-  top: calc( var(--header-upper-padding-top) + var(--header-upper-height) );
+  z-index: 1000;
+  /* top: calc( var(--header-upper-padding-top) + var(--header-upper-height) ); */
   width: 100vw;
   height: 100vh;
   color: white;
-  background-color: rgba(0,0,0,0);
-
-  /* 不可視 */
-  /* display: none; */
+  background-color: rgba(0, 0, 0, 0.95);
+  /* パディング */
+  padding: 32px;
+  /* 通常時は、不可視＆透明を適用 */
+  visibility: hidden;
+  opacity: 0;
 }
+/* 外見が変化する早さの設定 */
 .hambruger_menue_container {
-  /* transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-  transition-delay: 0s; */
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
 }
-/* メニューパネル・オープン時 */
+/* メニューパネル・オープン時は、可視＆不透過を適用 */
 .hambruger_menue_container.js_open {
-  /* display: block; */
-  z-index: 10000;
-  background-color: rgba(0,0,0,0.95);
+  visibility: visible;
+  opacity: 1;
 }
 
+.hambruger_menue__item {
+  /* opacity: 0; */
+}
+/* メニューパネル、選択項目、変化速度 */
+.hambruger_menue__item {
 
+}
+.hambruger_menue_container.js_open .hambruger_menue__item {
+  /* opacity: 1; */
+}
+
+.hambruger_menue__item > a {
+  color: white;
+}
 
 
 /* ************************************************************************
@@ -691,10 +694,44 @@ footer,
 /* テキスト側・外側ラップ */
 .card_section_containing_slider__text_outer_wrap {
   width: 50%;
-  
   margin: auto;
   color: white;
 }
+
+/* テキスト側・テキスト部分 */
+.card_section_containing_slider__text {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
+.card_section_containing_slider__text a {
+  color: white;
+  text-decoration: none;
+}
+
+/* テキスト側・ボタン部分 */
+.card_section_containing_slider__button {
+  width: 200px;
+  height: 50px;
+  /* ボタン中央寄せ */
+  margin-right: auto;
+  margin-left: auto;
+  /* 色 */
+  background-color: gray;
+  color: white;
+  /* 内部の中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card_section_containing_slider__button {
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
 
 /* スライダー内・画像*/
 .card_section_containing_slider__img_wrap {
@@ -709,188 +746,12 @@ footer,
   border-bottom-right-radius: 32px;
 }
 
-/* ************************************************************************
-  footer slider section 
-*/
-:root {
-  /* --footer-slider-section--common-height: 320px; */
-  --footer-slider-section--padding: 20px;
-  --footer-slider-section--slider-width: 50vw;
-  --footer-slider-section--slider-height: calc(var(--footer-slider-section--slider-width)*calc(2/3));
-}
 
-/* スライダーを含むセクション全体 */
-.footer_slider_section {
-  width: 100%;
-  height: calc(var(--footer-slider-section--slider-height) + 64px);
-
-  /* flex */
-  display: flex;
-  gap: 20px;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  /* 色 */
-  background-color: #333;
-  color: white;
-}
-@media screen and (max-width: 792px) {
-  .footer_slider_section {
-    flex-direction: column;
-    height: calc( calc(var(--footer-slider-section--slider-height)*5) + 32px);
+@media screen and (max-width:792px) {
+  .card_section_containing_slider__swiper_outer_wrap {
+    width: 90%;
   }
-}
-
-
-/* footer slider section 右側 */
-.footer_slider_section__slider_area {
-  background-color: transparent;
-  position: relative;
-  max-width: 1080px;
-  max-height: 720px;
-  width: var(--footer-slider-section--slider-width);
-  height: var(--footer-slider-section--slider-height);
-}
-@media screen and (max-width: 792px) {
-  .footer_slider_section__slider_area {
-    height: calc(var(--footer-slider-section--slider-height) * 1.5);
-    /* height: 480px; */
-    width: 96%;
-    margin-left: -4%;
-    margin-top: 32px;
+  .card_section_containing_slider__text_outer_wrap {
+    width: 90%;
   }
-}
-
-/* footer スライダー img 共通設定 */
-.footer_slider_section__slider_image {
-  max-width: 100%;
-  /* height: var(--footer-slider-section--slider-height); */
-  vertical-align:bottom;
-  object-fit: cover;
-  border-bottom-right-radius: 32px;
-}
-/*  */
-.footer_slider_section__slider_image_wrap--01,
-.footer_slider_section__slider_image_wrap--02,
-.footer_slider_section__slider_image_wrap--03 {
-  /* absolute, 重なり, 座標 */
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-  /* height: var(--footer-slider-section--slider-height); */
-
-  /* アニメーションの共通設定 */
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-  animation-duration: 18s;
-}
-@media screen and (max-width: 792px) {
-  .footer_slider_section__slider_image_wrap--01,
-  .footer_slider_section__slider_image_wrap--02,
-  .footer_slider_section__slider_image_wrap--03 {
-    height: calc(var(--footer-slider-section--slider-height) * 1.5);
-  }
-}
-
-/* アニメーションの個別設定 */
-.footer_slider_section__slider_image_wrap--01 {
-  animation-name: footer_slider_anime_01;
-}
-.footer_slider_section__slider_image_wrap--02 {
-  animation-name: footer_slider_anime_02;
-}
-.footer_slider_section__slider_image_wrap--03 {
-  animation-name: footer_slider_anime_03;
-}
-
-/* footer slider section 右側のエリア。小画面時は下 */
-.footer_slider_section__text_area {
-  margin-right: auto;
-  margin-left: auto;
-}
-@media screen and (max-width: 792px) {
-  .footer_slider_section__text_area {
-    width: 80vw;
-    position: relative;
-    top: calc(100vw * calc(1/6));
-  }
-}
-
-/* リスト */
-.footer_slider_section__anchor_list {
-  padding-left: 24px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 16px;
-}
-.footer_slider_section__anchor_list a {
-  color: white;
-  text-decoration: none;
-}
-
-
-/* button 03 */
-.button_style_03 {
-  width: 200px;
-  height: 50px;
-  /* ボタン中央寄せ */
-  margin-right: auto;
-  margin-left: auto;
-  /* 色 */
-  background-color: gray;
-  color: white;
-  /* 内部の中央寄せ */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.button_style_03 {
-  border-radius: 16px;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  -ms-border-radius: 16px;
-  -o-border-radius: 16px;
-}
-
-
-/* footer slider のアニメーション・ルール */
-@keyframes footer_slider_anime_01 {
-  0% { opacity: 1;}
-  10%{ opacity: 1;}
-  30%{ opacity: 1;}
-  40%{ opacity: 0;}
-  50%{ opacity: 0;}
-  60%{ opacity: 0;}
-  70%{ opacity: 0;}
-  80%{ opacity: 0;}
-  90%{ opacity: 0;}
-  100%{ opacity: 1;}
-}
-@keyframes footer_slider_anime_02 {
-  0% { opacity: 0;}
-  10%{ opacity: 0;}
-  30%{ opacity: 0;}
-  40%{ opacity: 1;}
-  50%{ opacity: 1;}
-  60%{ opacity: 1;}
-  70%{ opacity: 0;}
-  80%{ opacity: 0;}
-  90%{ opacity: 0;}
-  100%{ opacity: 0;}
-}
-@keyframes footer_slider_anime_03 {
-  0% { opacity: 0;}
-  10%{ opacity: 0;}
-  30%{ opacity: 0;}
-  40%{ opacity: 0;}
-  50%{ opacity: 0;}
-  60%{ opacity: 0;}
-  70%{ opacity: 1;}
-  80%{ opacity: 1;}
-  90%{ opacity: 1;}
-  100%{ opacity: 0;}
 }
