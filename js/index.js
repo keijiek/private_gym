@@ -158,9 +158,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     // 最後に達したら先頭に戻る設定。
     // これを true にする場合、slidesPerView の値を、実際のスライド枚数の半分以下にしなければならない。
     loop: true,
-
+    // rewind: true,
     // 初期状態で焦点を当あてるスライド番号。0 = 一枚目
-    initialSlide: 0,
+    initialSlide: 2,
 
     // アニメーションのスピード（1000 = 1秒)
     speed: 500,
@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         
     // 一画面に何枚のスライドを表示するか。後述の breakpoints の設定で枚数を調整するとよい。
     // loop の値が true の場合、この値は、実際のスライド枚数の半分以下にしなければならない。
-    slidesPerView: '2',
+    slidesPerView: '3',
     spaceBetween: 20,
 
     // ブレイクポイントごとの設定。
@@ -179,7 +179,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     // 例えば 700: {}, と設定を記述する場合、ビューポートが 700px 以上の時の設定となる。
     breakpoints: {
       980: {
-        slidesPerView: '3',
+        slidesPerView: '5',
         spaceBetween: 20,
       },
     },
@@ -217,8 +217,9 @@ window.addEventListener('DOMContentLoaded',()=>{
    * Facilities のカルーセル、Slider_02
    */
   const swiper_02 = new Swiper('.facilities_section .swiper', {
-    loop: true, //最後に達したら先頭に戻る
-    initialSlide: 0,
+    // loop: true, //最後に達したら先頭に戻る
+    rewind:true,
+    initialSlide: 1,
     
     speed: 500, // スライドアニメーションのスピード（ミリ秒）
     setWrapperSize:true,
@@ -226,23 +227,23 @@ window.addEventListener('DOMContentLoaded',()=>{
     centerInsufficientSlides: true,
 
     //何枚表示するか。 breakpoints 設定で枚数を調整するとよい。
-    slidesPerView: '1.1', 
+    slidesPerView: '2', 
     spaceBetween: 20,
     breakpoints: {
       500: {
-        slidesPerView: '1.3',
-        spaceBetween: 20,
-      },
-      700: {
-        slidesPerView: '1.5',
-        spaceBetween: 20,
-      },
-      960: {
         slidesPerView: '2',
         spaceBetween: 20,
       },
-      1500: {
+      700: {
+        slidesPerView: '2',
+        spaceBetween: 20,
+      },
+      960: {
         slidesPerView: '3',
+        spaceBetween: 20,
+      },
+      1500: {
+        slidesPerView: '5',
         spaceBetween: 40,
       }
     },
